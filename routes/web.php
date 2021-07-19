@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Laravel 8 (New)
+Route::get('/products', [ProductsController::class, 'index'])->name('products');
+Route::get('/products/about', [ProductsController::class, 'about']);
 
-//Route to users
-Route::get('/users', function() {
-    return 'Welcome to the users page';
-});
+//Pattern is an integer
+Route::get(
+    '/products/{id}',
+    [ProductsController::class, 'show']
+)->where('id', '[0-9]+');
+
+//Pattern is a string
+Route::get(
+    '/products/{name}/{id}',
+    [ProductsController::class, 'show']
+)->where([
+    'name' => '[a-zA-Z]+',
+    'id' => '[0-9]+',
+]);
