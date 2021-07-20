@@ -29,7 +29,7 @@ class CarsController extends Controller
      */
     public function create()
     {
-        //
+        return view('cars.create');
     }
 
     /**
@@ -40,7 +40,15 @@ class CarsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $car = Car::create([
+            'name' => $request->input('name'),
+            'founded' => $request->input('founded'),
+            'description' => $request->input('description'),
+        ]);
+
+        $car->save();
+        return redirect('/cars');
     }
 
     /**
@@ -62,7 +70,7 @@ class CarsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('card.create');
     }
 
     /**
