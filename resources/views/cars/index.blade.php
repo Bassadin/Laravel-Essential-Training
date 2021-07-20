@@ -17,6 +17,14 @@
                 <span>Founded: {{ $car->founded }}</span>
                 <h2>{{ $car->name }}</h2>
                 <p>{{ $car->description }}</p>
+                <a href="cars/{{ $car->id }}/edit">Edit...</a>
+
+                <form action="/cars/{{ $car->id }}" method="POST">
+                    @csrf
+                    @method('delete')
+
+                    <button type="submit">Delete car</button>
+                </form>
                 <hr>
             @endforeach
 
