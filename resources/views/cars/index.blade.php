@@ -15,7 +15,11 @@
 
             @foreach ($cars as $car)
                 <span>Founded: {{ $car->founded }}</span>
-                <h2>{{ $car->name }}</h2>
+                <h2>
+                    <a href="/cars/{{ $car->id }}">
+                        {{ $car->name }}
+                    </a>
+                </h2>
                 <p>{{ $car->description }}</p>
                 <a href="cars/{{ $car->id }}/edit">Edit...</a>
 
